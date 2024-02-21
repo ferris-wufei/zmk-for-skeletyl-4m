@@ -19,7 +19,7 @@
 };
 
 / {
-	    combos {
+    combos {
         compatible = "zmk,combos";
 
         left_bkt {
@@ -68,6 +68,7 @@
             key-positions = <14 15>;
         };
     };
+
     behaviors {
         hm: homerow_mods {
             compatible = "zmk,behavior-hold-tap";
@@ -76,13 +77,12 @@
             tapping-term-ms = <200>;
             quick_tap_ms = <0>;
             flavor = "tap-preferred";
-            bindings =
-                <&kp>,
-                <&kp>;
+            bindings = <&kp>, <&kp>;
 
             quick-tap-ms = <180>;
             global-quick-tap;
         };
+
         ltq: ltq {
             compatible = "zmk,behavior-hold-tap";
             label = "LTQ";
@@ -90,9 +90,7 @@
             tapping-term-ms = <200>;
             quick_tap_ms = <0>;
             flavor = "hold-preferred";
-            bindings =
-                <&mo>,
-                <&kp>;
+            bindings = <&mo>, <&kp>;
 
             quick-tap-ms = <180>;
             global-quick-tap;
@@ -104,30 +102,23 @@
 
         default_layer {
             bindings = <
-         &kp Q                        &kp W                     &kp E                       &kp R     &kp T  &kp Y                                &kp U        &kp I            &kp O               &kp P
-&hm LEFT_GUI A               &hm LEFT_ALT S               &hm LCTRL D            &hm LEFT_SHIFT F     &kp G  &kp H                    &hm RIGHT_SHIFT J  &hm RCTRL K  &hm RIGHT_ALT L  &hm RIGHT_GUI SEMI
-         &kp Z                        &kp X                     &kp C                       &kp V     &kp B  &kp N                                &kp M    &kp COMMA       &kp PERIOD            &kp FSLH
-                &lt 1 SPACE                  &lt 2 ENTER               &kp LALT                    &kp RALT  &mo 3  &ltq 2 BACKSPACE
+&kp Q                         &kp W                         &kp E                    &kp R             &kp T         &kp Y                      &kp U              &kp I        &kp O            &kp P
+&hm LEFT_GUI A                &hm LEFT_ALT S                &hm LCTRL D              &hm LEFT_SHIFT F  &kp G         &kp H                      &hm RIGHT_SHIFT J  &hm RCTRL K  &hm RIGHT_ALT L  &hm RIGHT_GUI SEMI
+&kp Z                         &kp X                         &kp C                    &kp V             &kp B         &kp N                      &kp M              &kp COMMA    &kp PERIOD       &kp FSLH
+                &kp LEFT_GUI                  &ltq 2 SPACE               &ltq 1 TAB                    &ltq 1 ENTER  &ltq 2 BACKSPACE  &kp ESC
             >;
         };
 
-        lower_layer {
+        num_layer {
             bindings = <
-&kp N1          &kp N2          &kp N3          &kp N4  &kp N5     &kp N6             &kp N7     &kp N8  &kp N9   &kp N0
-&trans          &trans          &trans          &trans  &trans  &kp MINUS          &kp EQUAL  &kp GRAVE  &trans  &kp SQT
-&trans          &trans          &trans          &trans  &trans     &trans             &trans     &trans  &trans   &trans
-        &trans          &trans          &trans          &trans  &kp RSHFT  &trans
-            >;
-        };
-		  raise_layer {
-            bindings = <
-&trans          &trans          &trans          &trans  &trans  &trans          &trans  &trans  &trans  &trans
+&kp N1          &kp N2          &kp N3          &kp N4  &kp N5  &kp N6          &kp N7  &kp N8  &kp N9  &kp N0
 &trans          &trans          &trans          &trans  &trans  &trans          &trans  &trans  &trans  &trans
 &trans          &trans          &trans          &trans  &trans  &trans          &trans  &trans  &trans  &trans
         &trans          &trans          &trans          &trans  &trans  &trans
             >;
-        };		
-        adjust_layer {
+        };
+
+        sym_layer {
             bindings = <
 &trans          &trans          &trans          &trans  &trans  &trans          &trans  &trans  &trans  &trans
 &trans          &trans          &trans          &trans  &trans  &trans          &trans  &trans  &trans  &trans
@@ -135,6 +126,16 @@
         &trans          &trans          &trans          &trans  &trans  &trans
             >;
         };
+
+        fun_layer {
+            bindings = <
+&bt BT_SEL 0          &bt BT_SEL 1          &bt BT_SEL 2          &bt BT_SEL 3  &bt BT_SEL 4  &trans          &trans  &trans  &trans  &trans
+&bt BT_CLR            &trans                &trans                &trans        &trans        &trans          &trans  &trans  &trans  &trans
+&trans                &trans                &trans                &trans        &trans        &trans          &trans  &trans  &trans  &trans
+              &trans                &trans                &trans                &trans        &trans  &trans
+            >;
+        };
+
         layer_4 {
             bindings = <
 &trans          &trans          &trans          &trans  &trans  &trans          &trans  &trans  &trans  &trans
@@ -169,6 +170,15 @@
 &trans          &trans          &trans          &trans  &trans  &trans          &trans  &trans  &trans  &trans
         &trans          &trans          &trans          &trans  &trans  &trans
             >;
+        };
+    };
+
+    conditional_layers {
+        compatible = "zmk,conditional-layers";
+
+        layer12to3 {
+            if-layers = <1 2>;
+            then-layer = <3>;
         };
     };
 };
